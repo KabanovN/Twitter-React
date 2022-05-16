@@ -1,22 +1,21 @@
-import React from "react";
 import PostListItem from '../post-list-item';
 
 import './post-list.css';
 
-const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked}) => {
-
-    const elements = posts.map(item => {
+const PostList = ({ posts, onDelete, onToggleImportant, onToggleLiked }) => {
+    const elements = posts.map((item) => {
         if (typeof item === 'object' && isEmpty(item)) {
-            const {id, ...itemProps} = item;
+            const { id, ...itemProps } = item;
             return (
-                <li key={id} className="list-group-item">
-                    <PostListItem 
+                <li key={id} className='list-group-item'>
+                    <PostListItem
                         {...itemProps}
                         onDelete={() => onDelete(id)}
                         onToggleImportant={() => onToggleImportant(id)}
-                        onToggleLiked={() => onToggleLiked(id)}/>
+                        onToggleLiked={() => onToggleLiked(id)}
+                    />
                 </li>
-            )
+            );
         }
     });
 
@@ -25,14 +24,10 @@ const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked}) => {
         for (let key in obj) {
             return true;
         }
-            return false;
+        return false;
     }
 
-    return (
-        <ul className="app-list list-group">
-            {elements}
-        </ul>
-    )
+    return <ul className='app-list list-group'>{elements}</ul>;
 };
 
 export default PostList;
